@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { MenuIcon, XIcon } from 'lucide-react';
 
 import {
@@ -26,7 +26,7 @@ export default function NavbarDrawer({ children }: Props) {
           <MenuIcon />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="w-full flex flex-col items-stretch gap-2">
+      <DrawerContent className="w-full flex flex-col items-start p-2 space-y-2">
         <DrawerClose asChild>
           <Button variant="ghost" size="icon">
             <XIcon />

@@ -5,6 +5,7 @@ import { Button } from '~/components/ui/button';
 
 import NavbarMenu from './navigation-menu';
 import NavbarDrawer from './navbar-drawer';
+import { Link, useLocation } from 'react-router';
 
 export interface Navbar01NavLink {
   href: string;
@@ -14,18 +15,17 @@ export interface Navbar01NavLink {
 
 export interface Navbar01Props extends React.HTMLAttributes<HTMLElement> {
   logo?: React.ReactNode;
-  logoHref?: string;
   navigationLinks: Navbar01NavLink[];
 }
 
 export default function Navbar01({
   className,
   logo,
-  logoHref = '#',
   navigationLinks,
 }: Navbar01Props) {
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const checkWidth = () => {
@@ -44,13 +44,27 @@ export default function Navbar01({
     };
   }, []);
 
+  const navLinksWithActive = navigationLinks.map((link) => ({
+    ...link,
+    active: location.pathname === link.href,
+  }));
+
   const LogoButton = (
     <Button
-      variant="ghost"
-      className="flex items-center gap-x-2 hover:text-primary"
+      asChild
+      variant="outline"
+      className={cn(
+        'justify-center',
+        location.pathname == '/' &&
+          'bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground'
+      )}
     >
-      <span className="hidden text-xl sm:inline-block">AdRoam</span>
-      {logo}
+      <Link to="/">
+        <div className="flex gap-2 items-center">
+          <span className="hidden sm:inline-block">AdRoam</span>
+          {logo}
+        </div>
+      </Link>
     </Button>
   );
 
@@ -65,17 +79,19 @@ export default function Navbar01({
       <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between gap-4">
         {isMobile ? (
           <>
-            <div className="flex items-center justify-start">{LogoButton}</div>
-            <div className="flex items-center justify-end">
-              <NavbarDrawer>
-                <NavbarMenu className='w-full' navigationLinks={navigationLinks} vertical={true} />
-              </NavbarDrawer>
-            </div>
+            <NavbarDrawer>
+              <NavbarMenu
+                className="w-full"
+                navigationLinks={navLinksWithActive}
+                vertical={true}
+              />
+            </NavbarDrawer>
+            {LogoButton}
           </>
         ) : (
-          <div className="flex items-center justify-end w-full gap-4">
-            <NavbarMenu navigationLinks={navigationLinks} />
+          <div className="flex items-center justify-start w-full gap-2">
             {LogoButton}
+            <NavbarMenu navigationLinks={navLinksWithActive} />
           </div>
         )}
       </div>

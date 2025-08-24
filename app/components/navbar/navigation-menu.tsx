@@ -1,10 +1,5 @@
 import { Link } from 'react-router';
 
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-} from '~/components/ui/navigation-menu';
 import { Button } from '~/components/ui/button';
 import { cn } from '~/lib/utils';
 
@@ -16,31 +11,25 @@ interface Props {
   className?: string;
 }
 
-export default function NavbarMenu({
-  navigationLinks,
-  vertical,
-  className,
-}: Props) {
+export default function NavbarMenu({ navigationLinks, vertical }: Props) {
   return (
-    <NavigationMenu className={className}>
-      <NavigationMenuList
-        className={cn('w-full flex gap-2', vertical ? 'flex-col' : 'flex-row')}
-      >
-        {navigationLinks.map((link, index) => (
-          <NavigationMenuItem key={index}>
-            <Button
-              asChild
-              variant="secondary"
-              className={cn(
-                'justify-center',
-                link.active && 'bg-primary text-primary-foreground'
-              )}
-            >
-              <Link to={link.href}>{link.label}</Link>
-            </Button>
-          </NavigationMenuItem>
-        ))}
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div
+      className={cn('flex gap-2', vertical ? 'flex-col w-full' : 'flex-row')}
+    >
+      {navigationLinks.map((link, index) => (
+        <Button
+          asChild
+          key={index}
+          variant="outline"
+          className={cn(
+            'justify-center',
+            link.active &&
+              'bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground'
+          )}
+        >
+          <Link to={link.href}>{link.label}</Link>
+        </Button>
+      ))}
+    </div>
   );
 }
