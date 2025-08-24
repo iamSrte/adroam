@@ -7,6 +7,8 @@ import {
   ScrollRestoration,
 } from 'react-router';
 
+import { Toaster } from '~/components/ui/sonner';
+
 import type { Route } from './+types/root';
 import './app.css';
 
@@ -25,7 +27,7 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir='rtl'>
+    <html lang="en" dir="rtl">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,6 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster />
         <ScrollRestoration />
         <Scripts />
       </body>

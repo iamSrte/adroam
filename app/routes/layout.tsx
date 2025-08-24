@@ -11,7 +11,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 const links: Navbar01NavLink[] = [
-  { href: '/signup', label: 'ثبت نام' },
+  { href: '/upload-ad', label: 'ثبت تبلیغ'},
+  { href: '/signup', label: 'ثبت نام رانندگان' },
   { href: '/support', label: 'پشتیبانی' },
 ];
 
