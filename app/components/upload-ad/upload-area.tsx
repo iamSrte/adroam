@@ -88,7 +88,7 @@ export function ImageUploadCrop() {
 
   const handleFileSelect = useCallback((file: File) => {
     if (!file.type.startsWith('image/')) {
-      toast.error('Invalid file type. Please select an image file.');
+      toast.error('فایل انتخاب شده پشتیبانی نمی‌شود! لطفا یک تصویر انتخاب کنید.');
       return;
     }
 
