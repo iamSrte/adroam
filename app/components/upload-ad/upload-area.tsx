@@ -18,6 +18,7 @@ import {
 } from '~/components/ui/select';
 import { Button } from '~/components/ui/button';
 import { EtheralShadow } from '~/components/ui/ethereal-shadow';
+import { SubmissionFlow } from '~/components/upload-ad/submission';
 
 interface CropArea {
   x: number;
@@ -60,6 +61,7 @@ export function ImageUploadCrop() {
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [frameAspectIndex, setFrameAspectIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(1024);
+  const [isSubmissionOpen, setIsSubmissionOpen] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -88,7 +90,9 @@ export function ImageUploadCrop() {
 
   const handleFileSelect = useCallback((file: File) => {
     if (!file.type.startsWith('image/')) {
-      toast.error('فایل انتخاب شده پشتیبانی نمی‌شود! لطفا یک تصویر انتخاب کنید.');
+      toast.error(
+        'فایل انتخاب شده پشتیبانی نمی‌شود! لطفا یک تصویر انتخاب کنید.'
+      );
       return;
     }
 
@@ -295,15 +299,6 @@ export function ImageUploadCrop() {
     toast.success('تصویر تبلیغ شما آماده ارسال به کارشناسان ماست!');
   };
 
-  const downloadImage = () => {
-    if (!croppedImage) return;
-
-    const link = document.createElement('a');
-    link.download = 'cropped-image.png';
-    link.href = croppedImage;
-    link.click();
-  };
-
   const handleTouchStart = (e: React.TouchEvent) => {
     const touch = e.touches[0];
     setIsDragging(true);
@@ -436,7 +431,7 @@ export function ImageUploadCrop() {
               </div>
             </div>
             <div className="flex justify-center space-x-2">
-              <Button onClick={downloadImage} size="sm">
+              <Button onClick={() => setIsSubmissionOpen(true)} size="sm">
                 <Upload />
                 ارسال
               </Button>
@@ -605,6 +600,11 @@ export function ImageUploadCrop() {
           </div>
         </DialogContent>
       </Dialog>
+
+      <SubmissionFlow
+        open={isSubmissionOpen}
+        onOpenChange={setIsSubmissionOpen}
+      />
 
       <canvas ref={canvasRef} className="hidden" />
     </div>
