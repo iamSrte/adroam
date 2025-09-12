@@ -56,7 +56,7 @@ export default function Navbar01({
       className={cn(
         'justify-center',
         location.pathname == '/' &&
-          'bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground'
+          'bg-primary text-primary-foreground hover:bg-blue-600 hover:text-primary-foreground'
       )}
     >
       <Link to="/">

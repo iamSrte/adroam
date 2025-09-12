@@ -24,7 +24,7 @@ export default function NavbarMenu({ navigationLinks, vertical }: Props) {
           className={cn(
             'justify-center',
             link.active &&
-              'bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground'
+              'bg-primary text-primary-foreground hover:bg-blue-600 hover:text-primary-foreground'
           )}
         >
           <Link to={link.href}>{link.label}</Link>

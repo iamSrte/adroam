@@ -429,7 +429,7 @@ export function ImageUploadCrop() {
             <div className="relative mx-auto">
               <div className="relative overflow-hidden rounded-lg border bg-card shadow-sm">
                 <img
-                  src={croppedImage || '/placeholder.svg'}
+                  src={croppedImage}
                   alt="Cropped result"
                   className="w-full h-auto object-cover"
                 />

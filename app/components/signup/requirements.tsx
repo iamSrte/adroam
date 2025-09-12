@@ -19,7 +19,7 @@ export default function Requirements() {
               <ul className="space-y-5 text-lg">
                 {documentsList.map((document, index) => (
                   <li key={index} className="relative pr-6">
-                    <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full ring-4 ring-primary/40"></span>
+                    <span className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full ring-3 ring-primary/40"></span>
                     {document}
                   </li>
                 ))}
