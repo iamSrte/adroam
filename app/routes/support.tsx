@@ -43,20 +43,20 @@ export default function App() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-start justify-center p-4">
+    <section className="flex relative min-h-[95vh] items-start justify-center overflow-hidden p-4 md:py-18">
       <DotPattern
-        className="absolute inset-0 z-10 bg-slate-"
-        dotSize={5}
         gap={15}
-        baseColor="#EBEEFA"
-        activeColor="#2053FA"
+        dotSize={5}
         proximity={100}
         shockRadius={0}
         shockStrength={0}
         resistance={500}
         returnDuration={1.5}
+        baseColor="#EBEEFA"
+        activeColor="#2053FA"
+        className="absolute inset-0 z-10"
       />
-      <div className="w-full max-w-5xl bg-white rounded-2xl shadow-2xl my-20 grid grid-cols-1 md:grid-cols-2 overflow-hidden z-20 border">
+      <div className="grid grid-cols-1 md:grid-cols-2 relative w-full max-w-5xl bg-white border rounded-xl shadow-2xl overflow-hidden z-20">
         {/* Right Side: Contact Information */}
         <div className="p-8 flex flex-col">
           <div>

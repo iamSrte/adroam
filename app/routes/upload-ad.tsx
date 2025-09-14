@@ -15,7 +15,7 @@ export default function UploadAd() {
         returnDuration={1.5}
         baseColor="#EBEEFA"
         activeColor="#2053FA"
-        className="absolute w-screen inset-0 z-10"
+        className="absolute inset-0 z-10"
       />
       <div className="relative container space-y-12 z-20">
         <h1 className="text-3xl md:text-4xl font-bold text-center">
