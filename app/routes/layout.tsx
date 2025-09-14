@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
-import { CarIcon } from 'lucide-react';
-import Navbar01, { type Navbar01NavLink } from '~/components/navbar/navbar';
+import Footer from '~/components/footer';
+import Navbar, { type NavbarNavLink } from '~/components/navbar/navbar';
 import type { Route } from './+types/layout';
 
 export function meta({}: Route.MetaArgs) {
@@ -10,18 +10,19 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-const links: Navbar01NavLink[] = [
-  { href: '/upload-ad', label: 'ثبت تبلیغ'},
+const links: NavbarNavLink[] = [
+  { href: '/upload-ad', label: 'ثبت تبلیغ' },
   { href: '/signup', label: 'ثبت نام رانندگان' },
   { href: '/support', label: 'پشتیبانی' },
 ];
 
-export default function Navbar() {
+export default function Layout() {
   return (
     <div>
       <div className="w-full relative">
-        <Navbar01 logo={<CarIcon />} navigationLinks={links} />
+        <Navbar navigationLinks={links} />
         <Outlet />
+        <Footer />
       </div>
     </div>
   );
