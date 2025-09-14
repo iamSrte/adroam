@@ -1,5 +1,6 @@
 {
   "name": "adroam",
+  "homepage": "https://iamsrte.github.io/adroam/",
   "private": true,
   "type": "module",
   "scripts": {
