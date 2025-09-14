@@ -11,20 +11,20 @@ const documentsList = [
 
 export default function Requirements() {
   return (
-    <section className="flex flex-col h-screen md:h-full relative overflow-hidden bg-transparent text-center py-20 px-4">
+    <section className="flex flex-col relative min-h-screen md:min-h-full overflow-hidden py-20 px-4">
       <DotPattern
-        className="absolute inset-0 z-10"
-        dotSize={5}
         gap={15}
-        baseColor="#EBEEFA"
-        activeColor="#2053FA"
+        dotSize={5}
         proximity={100}
         shockRadius={0}
         shockStrength={0}
         resistance={500}
         returnDuration={1.5}
+        baseColor="#EBEEFA"
+        activeColor="#2053FA"
+        className="absolute inset-0 z-10"
       />
-      <div className="flex flex-col md:flex-row md:gap-x-10 gap-y-25 relative z-20 items-center justify-around">
+      <div className="flex flex-col md:flex-row md:gap-x-10 gap-y-25 relative z-20 text-center items-center justify-around">
         {/* intro */}
         <div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
