@@ -1,8 +1,7 @@
 import DotPattern from '~/components/ui/dot-pattern';
-import Instruction from '~/components/upload-ad/instruction';
-import ImageUploadCrop from '~/components/upload-ad/upload-area';
+import { Instruction, ImageUploadArea } from '~/components/ad-submission';
 
-export default function UploadAd() {
+export default function AdSubmission() {
   return (
     <section className="flex relative min-h-screen items-start justify-center overflow-hidden py-20 px-4">
       <DotPattern
@@ -23,7 +22,7 @@ export default function UploadAd() {
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 bg-white border rounded-xl lg:gap-12 max-w-6xl mx-auto">
           <div className="bg-gray-100 rounded-t-xl lg:rounded-none lg:rounded-r-xl border-b lg:border-l items-center justify-center p-2">
-            <ImageUploadCrop />
+            <ImageUploadArea />
           </div>
           <div className="flex items-start justify-center py-10 px-8 lg:px-0 lg:pl-8 ">
             <Instruction />

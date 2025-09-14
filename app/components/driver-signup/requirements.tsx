@@ -39,7 +39,7 @@ export default function Requirements() {
             variant="default"
             className="p-8 mt-10 text-lg font-bold hover:bg-blue-700 shadow-lg transition-transform hover:scale-105"
           >
-            <Link to="/signup">به شبکه رانندگان ما بپیوندید</Link>
+            <Link to="/driver-signup">به شبکه رانندگان ما بپیوندید</Link>
           </Button>
         </div>
 

@@ -1,8 +1,8 @@
+import { Link } from 'react-router';
 import { DollarSignIcon, ClockIcon, CarIcon, UsersIcon } from 'lucide-react';
 import FeatureCard from './feature-card';
 import { Button } from '~/components/ui/button';
-import { Link } from 'react-router';
-import HappyDiver from '/assets/happy-driver.png'
+import HappyDiver from '~/assets/happy-driver.png'
 
 export default function ForDrivers() {
   return (
@@ -60,7 +60,7 @@ export default function ForDrivers() {
                 variant="default"
                 className="px-8 py-8 font-bold text-lg hover:bg-blue-700 transition-transform hover:scale-105 shadow-lg"
               >
-                <Link to="/signup">به شبکه رانندگان ما بپیوندید</Link>
+                <Link to="/driver-signup">به شبکه رانندگان ما بپیوندید</Link>
               </Button>
             </div>
           </div>

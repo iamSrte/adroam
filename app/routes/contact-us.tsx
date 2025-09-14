@@ -8,10 +8,10 @@ import {
   Instagram,
   Linkedin,
 } from 'lucide-react';
-import DotPattern from '~/components/ui/dot-pattern';
 import { Button } from '~/components/ui/button';
+import DotPattern from '~/components/ui/dot-pattern';
 
-export default function App() {
+export default function ContactUs() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<
     { id: number; text: string; sender: 'user' | 'support' }[]

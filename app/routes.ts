@@ -8,8 +8,8 @@ import {
 export default [
   layout('routes/layout.tsx', [
     index('routes/home.tsx'),
-    route('/upload-ad', 'routes/upload-ad.tsx'),
-    route('/signup', 'routes/signup.tsx'),
-    route('/support', 'routes/support.tsx'),
+    route('/ad-submission', './routes/ad-submission.tsx'),
+    route('/driver-signup', './routes/driver-signup.tsx'),
+    route('/contact-us', './routes/contact-us.tsx'),
   ]),
 ] satisfies RouteConfig;

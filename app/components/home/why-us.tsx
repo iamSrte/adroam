@@ -5,7 +5,7 @@ import {
   TrendingUpIcon,
 } from 'lucide-react';
 import FeatureCard from './feature-card';
-import MapIllustration from 'assets/map-Illustration.png';
+import MapIllustration from '~/assets/map-Illustration.png';
 
 export default function WhyChooseUs() {
   return (

@@ -18,14 +18,14 @@ export default function CallToAction() {
           variant="outline"
           className="px-8 py-8 font-bold text-lg text-primary hover:text-primary transition-transform hover:scale-105 shadow-lg"
         >
-          <Link to="/upload-ad">شروع تبلیغات</Link>
+          <Link to="/ad-submission">شروع تبلیغات</Link>
         </Button>
         <Button
           asChild
           variant="default"
           className="px-8 py-8 font-bold text-lg bg-blue-700 hover:bg-blue-800 border transition-transform hover:scale-105 shadow-lg"
         >
-          <Link to="/signup">
+          <Link to="/driver-signup">
             ثبت نام به عنوان راننده
           </Link>
         </Button>

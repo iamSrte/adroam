@@ -18,10 +18,10 @@ import {
 } from '~/components/ui/select';
 import { Button } from '~/components/ui/button';
 import { EtheralShadow } from '~/components/ui/ethereal-shadow';
-import { SubmissionFlow } from '~/components/upload-ad/submission';
+import { SubmissionFlow } from './submission-flow';
 import { cn } from '~/lib/utils';
 
-interface ImageUploadCropProps {
+interface ImageUploadAreaProps {
   className?: string;
 }
 
@@ -48,7 +48,7 @@ const FRAME_ASPECT_RATIOS = [
   { ratio: 2 / 3, name: '2:3' },
 ];
 
-export default function ImageUploadCrop({ className }: ImageUploadCropProps) {
+export default function ImageUploadArea({ className }: ImageUploadAreaProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [croppedImage, setCroppedImage] = useState<string | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);

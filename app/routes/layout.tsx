@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router';
-import Footer from '~/components/footer';
-import Navbar, { type NavbarNavLink } from '~/components/navbar/navbar';
+import { Navbar, type NavbarNavLink, Footer } from '~/components/layout';
 import type { Route } from './+types/layout';
 
 export function meta({}: Route.MetaArgs) {
@@ -11,9 +10,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 const links: NavbarNavLink[] = [
-  { href: '/upload-ad', label: 'ثبت تبلیغ' },
-  { href: '/signup', label: 'ثبت نام رانندگان' },
-  { href: '/support', label: 'پشتیبانی' },
+  { href: '/ad-submission', label: 'ثبت تبلیغ' },
+  { href: '/driver-signup', label: 'ثبت نام رانندگان' },
+  { href: '/contact-us', label: 'پشتیبانی' },
 ];
 
 export default function Layout() {

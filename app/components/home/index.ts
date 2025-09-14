@@ -7,11 +7,11 @@ import FeatureCard from './feature-card';
 import Testimonials from './testimonials';
 
 export {
-  FeatureCard,
-  ForDrivers,
   Hero,
   HowItWorks,
+  ForDrivers,
+  FeatureCard,
+  WhyChooseUs,
   Testimonials,
   CallToAction,
-  WhyChooseUs,
 };

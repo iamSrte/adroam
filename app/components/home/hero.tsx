@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { Button } from '~/components/ui/button';
 import DotPattern from '~/components/ui/dot-pattern';
-import LandingImage from '/assets/landing-image.png';
+import LandingImage from '~/assets/landing-image.png';
 
 export default function Hero() {
   return (
@@ -39,14 +39,14 @@ export default function Hero() {
                   variant="default"
                   className="px-8 py-8 font-bold text-lg  hover:bg-blue-700 transition-transform hover:scale-105 shadow-lg"
                 >
-                  <Link to="/upload-ad">کسب و کار خود را تبلیغ کنید</Link>
+                  <Link to="/ad-submission">کسب و کار خود را تبلیغ کنید</Link>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   className="px-8 py-8 font-bold text-lg text-primary hover:text-primary transition-transform hover:scale-105 shadow-lg"
                 >
-                  <Link to="/signup">راننده شوید</Link>
+                  <Link to="/driver-signup">راننده شوید</Link>
                 </Button>
               </div>
             </div>

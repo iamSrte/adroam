@@ -1,5 +1,5 @@
-import { TwitterIcon, InstagramIcon, LinkedinIcon } from 'lucide-react';
 import { Link } from 'react-router';
+import { TwitterIcon, InstagramIcon, LinkedinIcon } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -21,17 +21,17 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/upload-ad" className="hover:text-white">
+                <Link to="/ad-submission" className="hover:text-white">
                   تبلیغ کنید
                 </Link>
               </li>
               <li>
-                <Link to="/signup" className="hover:text-white">
+                <Link to="/driver-signup" className="hover:text-white">
                   رانندگان
                 </Link>
               </li>
               <li>
-                <Link to="/support" className="hover:text-white">
+                <Link to="/contact-us" className="hover:text-white">
                   پشتیبانی
                 </Link>
               </li>
