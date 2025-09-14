@@ -17,16 +17,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
           node-version: '20'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Build the site
-        run: npm run build
+        run: pnpm run build
 
       - name: Prepare SPA fallback
         run: cp build/client/__spa-fallback.html build/client/404.html
