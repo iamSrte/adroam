@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Loader2Icon } from 'lucide-react';
 
 import {
   Dialog,
@@ -27,7 +27,6 @@ import {
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import { Button } from '~/components/ui/button';
-
 import useMediaQuery from '~/hooks/use-media-query';
 
 interface SubmissionFlowProps {
@@ -74,7 +73,7 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="sm:max-w-[425px]" showCloseButton={false}>
+        <DialogContent className="md:w-md border p-10" showCloseButton={false}>
           {step === 1 && (
             <>
               <DialogHeader>
@@ -85,7 +84,7 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
                   برای ثبت آگهی، لطفا شماره تلفن همراه خود را وارد کنید.
                 </DialogDescription>
               </DialogHeader>
-              <div className="pt-2 flex flex-col items-start gap-2">
+              <div className="flex flex-col pt-2 gap-2 items-start">
                 <Label htmlFor="phone">شماره تلفن</Label>
                 <Input
                   id="phone"
@@ -102,10 +101,10 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
                   onClick={handlePhoneSubmit}
                   disabled={phoneNumber.length != 11 || isLoading}
                 >
+                  {isLoading ? 'در حال ارسال' : 'ارسال کد تایید'}
                   {isLoading && (
-                    <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                    <Loader2Icon className=" size-4 animate-spin" />
                   )}
-                  {isLoading ? 'در حال ارسال...' : 'ارسال کد تایید'}
                 </Button>
                 <DialogClose asChild>
                   <Button variant="outline" disabled={isLoading}>
@@ -125,10 +124,10 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
                   کد ۶ رقمی ارسال شده به شماره {phoneNumber} را وارد کنید.
                 </DialogDescription>
               </DialogHeader>
-              <div className="p-4 flex justify-center">
+              <div className="flex py-4 justify-center">
                 <InputOTP
-                  maxLength={6}
                   value={otp}
+                  maxLength={6}
                   onChange={(value) => setOtp(value)}
                 >
                   <InputOTPGroup dir="ltr">
@@ -146,10 +145,8 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
                   onClick={handleOtpSubmit}
                   disabled={otp.length < 6 || isLoading}
                 >
-                  {isLoading && (
-                    <Loader2 className="ml-2 h-4 w-4 animate-spin" />
-                  )}
-                  {isLoading ? 'در حال تایید...' : 'تایید و ارسال آگهی'}
+                  {isLoading ? 'در حال تایید' : 'تایید و ارسال آگهی'}
+                  {isLoading && <Loader2Icon className="size-4 animate-spin" />}
                 </Button>
                 <Button
                   variant="outline"
@@ -167,14 +164,14 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
                 <DialogTitle className="text-start">
                   ✅ درخواست شما با موفقیت ثبت شد!
                 </DialogTitle>
-                <DialogDescription className="text-start">
+                <DialogDescription className="text-start mt-2">
                   آگهی شما برای کارشناسان ما ارسال شد و به زودی با شما تماس
                   خواهند گرفت.
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter>
                 <DialogClose asChild>
-                  <Button onClick={closeAndReset} className="mt-2 w-full">
+                  <Button onClick={closeAndReset} className="mt-4 w-full">
                     بستن
                   </Button>
                 </DialogClose>
@@ -197,7 +194,7 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
                 برای ثبت آگهی، لطفا شماره تلفن همراه خود را وارد کنید.
               </DrawerDescription>
             </DrawerHeader>
-            <div className="px-4 pt-2 flex flex-col items-start gap-2">
+            <div className="flex flex-col gap-2 p-4">
               <Label htmlFor="phone">شماره تلفن</Label>
               <Input
                 id="phone"
@@ -214,8 +211,8 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
                 onClick={handlePhoneSubmit}
                 disabled={phoneNumber.length != 11 || isLoading}
               >
-                {isLoading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
-                {isLoading ? 'در حال ارسال...' : 'ارسال کد تایید'}
+                {isLoading ? 'در حال ارسال' : 'ارسال کد تایید'}
+                {isLoading && <Loader2Icon className="size-4 animate-spin" />}
               </Button>
               <DrawerClose asChild>
                 <Button variant="outline" disabled={isLoading}>
@@ -233,10 +230,10 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
                 کد ۶ رقمی ارسال شده به شماره {phoneNumber} را وارد کنید.
               </DrawerDescription>
             </DrawerHeader>
-            <div className="p-4 flex justify-center">
+            <div className="flex justify-center p-4">
               <InputOTP
-                maxLength={6}
                 value={otp}
+                maxLength={6}
                 onChange={(value) => setOtp(value)}
               >
                 <InputOTPGroup dir="ltr">
@@ -254,8 +251,8 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
                 onClick={handleOtpSubmit}
                 disabled={otp.length < 6 || isLoading}
               >
-                {isLoading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
-                {isLoading ? 'در حال تایید...' : 'تایید و ارسال آگهی'}
+                {isLoading ? 'در حال تایید' : 'تایید و ارسال آگهی'}
+                {isLoading && <Loader2Icon className="size-4 animate-spin" />}
               </Button>
               <Button
                 variant="outline"
@@ -269,7 +266,7 @@ export function SubmissionFlow({ open, onOpenChange }: SubmissionFlowProps) {
         )}
         {step === 3 && (
           <>
-            <DrawerHeader>
+            <DrawerHeader className="my-2">
               <DrawerTitle>✅ درخواست شما با موفقیت ثبت شد!</DrawerTitle>
               <DrawerDescription>
                 آگهی شما برای کارشناسان ما ارسال شد و به زودی با شما تماس خواهند

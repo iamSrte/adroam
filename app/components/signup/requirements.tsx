@@ -1,4 +1,7 @@
-import { Card, CardContent, CardHeader } from '../ui/card';
+import { Link } from 'react-router';
+import { Button } from '~/components/ui/button';
+import { Card, CardContent } from '~/components/ui/card';
+import DotPattern from '~/components/ui/dot-pattern';
 
 const documentsList = [
   'عکس گواهینامه (پشت و رو)',
@@ -8,13 +11,44 @@ const documentsList = [
 
 export default function Requirements() {
   return (
-    <section className="w-full">
-      <div className="felx flex-col mx-auto text-center">
-        <h2 className="text-3xl font-bold md:text-4xl">
-          مدارک لازم برای ثبت‌نام
-        </h2>
-        <div className="flex items-center justify-center">
-          <Card className="max-w-sm md:max-w-md transform transition-transform duration-300 hover:-translate-y-2 text-right mt-10">
+    <section className="flex flex-col h-screen md:h-full relative overflow-hidden bg-transparent text-center py-20 px-4">
+      <DotPattern
+        className="absolute inset-0 z-10"
+        dotSize={5}
+        gap={15}
+        baseColor="#EBEEFA"
+        activeColor="#2053FA"
+        proximity={100}
+        shockRadius={0}
+        shockStrength={0}
+        resistance={500}
+        returnDuration={1.5}
+      />
+      <div className="flex flex-col md:flex-row md:gap-x-10 gap-y-25 relative z-20 items-center justify-around">
+        {/* intro */}
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+            برانید. کسب درآمد کنید. کاوش کنید.
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            رفت و آمد روزانه خود را به یک منبع درآمد منعطف و قابل اعتماد تبدیل
+            کنید.
+          </p>
+          <Button
+            asChild
+            variant="default"
+            className="p-8 mt-10 text-lg font-bold hover:bg-blue-700 shadow-lg transition-transform hover:scale-105"
+          >
+            <Link to="/signup">به شبکه رانندگان ما بپیوندید</Link>
+          </Button>
+        </div>
+
+        {/* requirements */}
+        <div className="flex flex-col gap-y-10 items-center">
+          <h2 className="text-2xl md:text-3xl font-bold">
+            مدارک لازم برای ثبت‌نام
+          </h2>
+          <Card className="max-w-md md:max-w-xl text-right transform transition-transform duration-300 hover:-translate-y-2">
             <CardContent>
               <ul className="space-y-5 text-lg">
                 {documentsList.map((document, index) => (

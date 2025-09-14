@@ -6,7 +6,6 @@ import {
   DrawerTrigger,
   DrawerClose,
   DrawerContent,
-  DrawerFooter,
 } from '~/components/ui/drawer';
 import { Button } from '~/components/ui/button';
 
@@ -18,22 +17,17 @@ export default function NavbarDrawer({ children }: Props) {
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
-        <Button
-          className="group h-9 w-9 hover:bg-accent hover:text-accent-foreground"
-          variant="ghost"
-          size="icon"
-        >
+        <Button size="icon" variant="ghost" className="size-10">
           <MenuIcon />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="w-full flex flex-col items-start p-2 space-y-2">
+      <DrawerContent className="flex flex-col items-start p-2 gap-y-2">
         <DrawerClose asChild>
           <Button variant="ghost" size="icon">
             <XIcon />
           </Button>
         </DrawerClose>
         {children}
-        <DrawerFooter></DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

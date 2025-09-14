@@ -1,24 +1,29 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
-import { Upload, Crop, Undo } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { UploadIcon, CropIcon, UndoIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import {
   Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
   DialogTitle,
+  DialogHeader,
+  DialogFooter,
+  DialogContent,
 } from '~/components/ui/dialog';
 import {
   Select,
-  SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue,
+  SelectTrigger,
+  SelectContent,
 } from '~/components/ui/select';
 import { Button } from '~/components/ui/button';
 import { EtheralShadow } from '~/components/ui/ethereal-shadow';
 import { SubmissionFlow } from '~/components/upload-ad/submission';
+import { cn } from '~/lib/utils';
+
+interface ImageUploadCropProps {
+  className?: string;
+}
 
 interface CropArea {
   x: number;
@@ -43,11 +48,11 @@ const FRAME_ASPECT_RATIOS = [
   { ratio: 2 / 3, name: '2:3' },
 ];
 
-export function ImageUploadCrop() {
+export default function ImageUploadCrop({ className }: ImageUploadCropProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [croppedImage, setCroppedImage] = useState<string | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [aspectRatio, setAspectRatio] = useState<string>('16:9');
+  const [aspectRatio, setAspectRatio] = useState<string>('4:3');
   const [cropArea, setCropArea] = useState<CropArea>({
     x: 0,
     y: 0,
@@ -71,11 +76,8 @@ export function ImageUploadCrop() {
     const updateWindowWidth = () => {
       setWindowWidth(window.innerWidth);
     };
-
     updateWindowWidth();
-
     window.addEventListener('resize', updateWindowWidth);
-
     return () => window.removeEventListener('resize', updateWindowWidth);
   }, []);
 
@@ -164,7 +166,6 @@ export function ImageUploadCrop() {
       const deltaX = e.clientX - dragStart.x;
       const deltaY = e.clientY - dragStart.y;
       const ratio = ASPECT_RATIOS[aspectRatio as keyof typeof ASPECT_RATIOS];
-
       const newCropArea = { ...cropArea };
 
       switch (resizeHandle) {
@@ -324,7 +325,6 @@ export function ImageUploadCrop() {
       const deltaX = touch.clientX - dragStart.x;
       const deltaY = touch.clientY - dragStart.y;
       const ratio = ASPECT_RATIOS[aspectRatio as keyof typeof ASPECT_RATIOS];
-
       const newCropArea = { ...cropArea };
 
       switch (resizeHandle) {
@@ -417,99 +417,92 @@ export function ImageUploadCrop() {
   };
 
   return (
-    <div>
-      <div className="flex items-center justify-center w-full h-full border-1 shadow rounded-lg p-4">
-        {croppedImage ? (
-          <div className="text-center max-w-md space-y-4">
-            <div className="relative mx-auto">
-              <div className="relative overflow-hidden rounded-lg border bg-card shadow-sm">
-                <img
-                  src={croppedImage}
-                  alt="Cropped result"
-                  className="w-full h-auto object-cover"
+    <div className={cn(className, 'flex items-center justify-center')}>
+      {croppedImage ? (
+        <div className="flex flex-col gap-y-4 p-2">
+          <img
+            src={croppedImage}
+            alt="Cropped result"
+            className="w-full max-h-auto object-cover overflow-hidden rounded-lg border bg-card shadow-sm"
+          />
+          <div className="flex justify-center gap-x-2">
+            <Button onClick={() => setIsSubmissionOpen(true)}>
+              <UploadIcon />
+              ارسال
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setCroppedImage(null);
+                setSelectedImage(null);
+              }}
+            >
+              <UndoIcon />
+              انتخاب دوباره
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className="flex justify-center">
+          <div className="flex relative items-center justify-center size-80 sm:size-80 md:size-96 lg:size-[28rem]">
+            <div
+              className="transition-all duration-1000 ease-out"
+              style={{
+                width: 'calc(100% - 2rem)',
+                height: `${getFrameHeight()}px`,
+                maxHeight: 'calc(100% - 2rem)',
+              }}
+            >
+              <div
+                className="w-full h-full border-2 border-dashed border-black rounded-lg bg-muted/50 hover:bg-muted/80 transition-colors cursor-pointer flex flex-col items-center justify-center relative"
+                onDrop={handleDrop}
+                onDragOver={(e) => e.preventDefault()}
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <EtheralShadow
+                  className="absolute inset-0 rounded-lg"
+                  color="rgba(50, 150, 255, 1.0)"
+                  animation={{ scale: 200, speed: 90 }}
+                  noise={{ opacity: 0.3, scale: 1 }}
+                />
+                <div className="text-center space-y-3 z-10">
+                  <div className="mx-auto w-12 h-12 bg-black rounded-lg flex items-center justify-center">
+                    <UploadIcon className="size-6 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <p className="text-lg font-bold text-foreground">
+                      بارگذاری تبلیغ
+                    </p>
+                  </div>
+                  <div className="absolute top-2 right-2 bg-black border border-white rounded px-2 py-1 text-xs font-medium text-white">
+                    {FRAME_ASPECT_RATIOS[frameAspectIndex].name}
+                  </div>
+                </div>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleFileSelect(file);
+                  }}
                 />
               </div>
             </div>
-            <div className="flex justify-center space-x-2">
-              <Button onClick={() => setIsSubmissionOpen(true)} size="sm">
-                <Upload />
-                ارسال
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  setCroppedImage(null);
-                  setSelectedImage(null);
-                }}
-              >
-                <Undo />
-                انتخاب دوباره
-              </Button>
-            </div>
           </div>
-        ) : (
-          <div className="flex max-w-md justify-center">
-            <div className="relative w-80 h-80 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] flex items-center justify-center">
-              <div
-                className="transition-all duration-1000 ease-out"
-                style={{
-                  width: 'calc(100% - 2rem)',
-                  height: `${getFrameHeight()}px`,
-                  maxHeight: 'calc(100% - 2rem)',
-                }}
-              >
-                <div
-                  className="w-full h-full border-2 border-dashed border-black rounded-lg bg-muted/50 hover:bg-muted/80 transition-colors cursor-pointer flex flex-col items-center justify-center relative"
-                  onDrop={handleDrop}
-                  onDragOver={(e) => e.preventDefault()}
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  <EtheralShadow
-                    className="absolute inset-0 rounded-lg"
-                    color="rgba(50, 150, 255, 1.0)"
-                    animation={{ scale: 200, speed: 90 }}
-                    noise={{ opacity: 0.3, scale: 1 }}
-                  />
-                  <div className="text-center space-y-3 z-10">
-                    <div className="mx-auto w-12 h-12 bg-black rounded-full flex items-center justify-center">
-                      <Upload className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">
-                        بارگذاری تبلیغ
-                      </p>
-                    </div>
-                    <div className="absolute top-2 right-2 bg-black border border-white rounded px-2 py-1 text-xs font-medium text-white">
-                      {FRAME_ASPECT_RATIOS[frameAspectIndex].name}
-                    </div>
-                  </div>
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) handleFileSelect(file);
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent
           showCloseButton={false}
-          className="max-w-4xl max-h-[90vh]  overflow-auto "
+          className="max-w-4xl max-h-[90vh] overflow-auto"
         >
           <DialogHeader>
             <DialogTitle>
               <span className="flex items-center">
-                <Crop className="h-5 w-5 ml-2" />
+                <CropIcon className="size-5 ml-2" />
                 برش تصویر
               </span>
             </DialogTitle>
