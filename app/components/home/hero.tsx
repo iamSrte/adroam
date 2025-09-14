@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { Button } from '~/components/ui/button';
 import DotPattern from '~/components/ui/dot-pattern';
+import LandingImage from '/assets/landing-image.png';
 
 export default function Hero() {
   return (
@@ -51,7 +52,7 @@ export default function Hero() {
             </div>
             <div>
               <img
-                src="assets/landing-image.png"
+                src={LandingImage}
                 alt="Illustration of a car with an advertisement panel on its roof"
                 className="rounded-xl shadow-2xl mx-auto"
               />

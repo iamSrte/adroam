@@ -2,6 +2,7 @@ import { DollarSignIcon, ClockIcon, CarIcon, UsersIcon } from 'lucide-react';
 import FeatureCard from './feature-card';
 import { Button } from '~/components/ui/button';
 import { Link } from 'react-router';
+import HappyDiver from '/assets/happy-driver.png'
 
 export default function ForDrivers() {
   return (
@@ -10,7 +11,7 @@ export default function ForDrivers() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <img
-              src="assets/happy-driver.png"
+              src={HappyDiver}
               alt="Illustration of a happy driver"
               className="rounded-xl shadow-xl mx-auto"
             />

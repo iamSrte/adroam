@@ -5,6 +5,7 @@ import {
   TrendingUpIcon,
 } from 'lucide-react';
 import FeatureCard from './feature-card';
+import MapIllustration from 'assets/map-Illustration.png';
 
 export default function WhyChooseUs() {
   return (
@@ -52,7 +53,7 @@ export default function WhyChooseUs() {
           </div>
           <div className="order-1 md:order-1">
             <img
-              src="assets/map-Illustration.png"
+              src={MapIllustration}
               alt="Illustration of a city map with routes highlighted"
               className="rounded-xl shadow-xl mx-auto"
             />
